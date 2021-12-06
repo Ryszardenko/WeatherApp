@@ -1,0 +1,14 @@
+<resources>
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/background_color</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.WeatherApp</item>
+    </style>
+
+    <style name="Theme.WeatherApp" parent="Theme.Material.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/background_color</item>
+    </style>
+
+    <style name="Theme.Material.DayNight.NoActionBar" parent="@android:style/Theme.Material.Light.NoActionBar" />
+</resources>

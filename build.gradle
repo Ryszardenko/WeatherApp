@@ -1,0 +1,51 @@
+import io.gitlab.arturbosch.detekt.Detekt
+
+buildscript {
+    ext {
+        kotlinVersion = "1.5.31"
+        androidToolsVersion = "7.0.3"
+        hiltVersion = "2.40.2"
+        detektVersion = "1.18.1"
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$androidToolsVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
+    }
+}
+
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "$detektVersion"
+}
+
+dependencies {
+    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:$detektVersion"
+}
+
+task detektAll(type: Detekt) {
+    description = "Runs detekt analysis over whole code base without the starting overhead for each modules."
+    parallel = true
+    config.setFrom(files("$rootDir/default-detekt-config.yml"))
+    setSource(files(projectDir))
+    include("**/*.kt")
+    include("**/*.kts")
+    exclude("**/resources/**")
+    exclude("**/*ComposePreview.kt")
+    exclude("**/build/**")
+    reports {
+        xml.enabled = true
+        html.enabled = false
+        txt.enabled = false
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+apply from: 'buildsystem/dependencies.gradle'
+apply from: 'buildsystem/secrets.gradle'

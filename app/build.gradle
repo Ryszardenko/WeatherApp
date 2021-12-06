@@ -1,0 +1,123 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+ext {
+    secrets = [
+            apiKey: keyProperty("API_KEY"),
+            baseUrl: keyProperty("BASE_URL")
+    ]
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.machmudow.weatherapp"
+        minSdk 27
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            versionNameSuffix "-DEBUG"
+            applicationIdSuffix ".debug"
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro',
+                    'proguard-rules-test.pro'
+        }
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                    'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "api"
+
+    productFlavors {
+        production {
+            dimension "api"
+
+            buildConfigField "String", "API_KEY", "\"${secrets.apiKey}\""
+            buildConfigField "String", "BASE_URL", "\"${secrets.baseUrl}\""
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion composeVersion
+    }
+    packagingOptions {
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+    }
+}
+
+dependencies {
+
+    implementation support
+
+    // Jetpack Compose
+    implementation jetpackCompose.libs
+
+    // SplashScreen
+    implementation splashScreen
+
+    // ViewModels LiveData
+    implementation lifecycle.libs
+    kapt lifecycle.proc
+
+    // Dagger (Hilt)
+    implementation dagger.hiltAndroid
+    kapt dagger.hiltAndroidCompiler
+    androidTestImplementation dagger.hiltAndroidTest
+    kaptAndroidTest dagger.hiltAndroidCompiler
+
+    // Coroutines
+    implementation coroutines.libs
+
+    // Navigation
+    implementation navigation
+    implementation dagger.hiltNavigation
+
+    // Networking
+    implementation networking.libs
+    debugImplementation networking.debugLibs
+    implementation moshi
+
+    // Compose testing
+    androidTestImplementation jetpackCompose.androidTest
+    androidTestImplementation(truth) {
+        exclude group: 'org.checkerframework', module: 'checker-qual'
+    }
+    debugImplementation jetpackCompose.debugLibs
+
+    // Unit testing
+    testImplementation baseTest
+    testImplementation mockk.unit
+    testImplementation truth
+    testImplementation coroutines.test
+}

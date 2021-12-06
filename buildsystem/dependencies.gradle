@@ -1,0 +1,136 @@
+ext {
+    appCompatVersion = "1.1.0"
+    coreKtxVersion = "1.7.0"
+    support = [
+            "androidx.appcompat:appcompat:$appCompatVersion",
+            "androidx.annotation:annotation:$appCompatVersion",
+            "androidx.preference:preference:$appCompatVersion",
+            "androidx.core:core-ktx:$coreKtxVersion",
+    ]
+
+    hiltNavigationVersion = "1.0.0-beta01"
+    dagger = [
+            dagger             : "com.google.dagger:dagger:$hiltVersion",
+            daggerCompiler     : "com.google.dagger:dagger-compiler:$hiltVersion",
+            hiltAndroid        : "com.google.dagger:hilt-android:$hiltVersion",
+            hiltNavigation     : "androidx.hilt:hilt-navigation-compose:$hiltNavigationVersion",
+            hiltAndroidCompiler: "com.google.dagger:hilt-android-compiler:$hiltVersion",
+            hiltAndroidTest    : "com.google.dagger:hilt-android-testing:$hiltVersion",
+    ]
+
+    lifecycleVersion = '2.4.0'
+    lifecycle = [
+            libs: [
+                    "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion",
+            ],
+            proc: [
+                    "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion",
+            ],
+    ]
+
+    viewModelVersion = '2.4.0'
+    viewmodel = [
+            "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion"
+    ]
+
+    navigationVersion = "2.4.0-beta02"
+    navigation = [
+            "androidx.navigation:navigation-compose:$navigationVersion"
+    ]
+
+    okHttpVersion = '4.9.3'
+    retrofitVersion = '2.9.0'
+    networking = [
+            libs     : [
+                    "com.squareup.okhttp3:okhttp:$okHttpVersion",
+                    "com.squareup.retrofit2:retrofit:$retrofitVersion",
+                    "com.squareup.retrofit2:converter-moshi:$retrofitVersion",
+            ],
+            debugLibs: [
+                    "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
+            ],
+            test     : [
+                    "com.squareup.okhttp3:mockwebserver:$okHttpVersion",
+            ],
+    ]
+
+    moshiVersion = "1.12.0"
+    moshi = [
+            "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+    ]
+
+    coroutinesVersion = "1.5.0"
+    turbineVersion = "0.7.0"
+    coroutines = [
+            libs: [
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+            ],
+            test: [
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion",
+                    "app.cash.turbine:turbine:$turbineVersion"
+            ]
+    ]
+
+    composeVersion = '1.1.0-beta03'
+    activityComposeVersion = '1.4.0'
+    viewModelComposeVersion = '2.4.0'
+//    accompanistVersion = "0.20.2"
+    jetpackCompose = [
+            libs       : [
+                    "androidx.activity:activity-compose:$activityComposeVersion",
+                    "androidx.compose.ui:ui:$composeVersion",
+                    "androidx.compose.ui:ui-tooling:$composeVersion",
+                    "androidx.compose.foundation:foundation:$composeVersion",
+                    "androidx.compose.material:material:$composeVersion",
+                    "androidx.compose.material:material-icons-core:$composeVersion",
+                    "androidx.compose.material:material-icons-extended:$composeVersion",
+                    "androidx.compose.runtime:runtime-livedata:$composeVersion",
+            ],
+//            accompanistInsets      : "com.google.accompanist:accompanist-insets:$accompanistVersion",
+//            accompanistSwipeRefresh: "com.google.accompanist:accompanist-swiperefresh:$accompanistVersion",
+            viewModel  : "androidx.lifecycle:lifecycle-viewmodel-compose:$viewModelComposeVersion",
+            androidTest: "androidx.compose.ui:ui-test-junit4:$composeVersion",
+            debugLibs  : "androidx.compose.ui:ui-test-manifest:$composeVersion",
+    ]
+
+    splashScreenVersion = "1.0.0-alpha02"
+    splashScreen = [
+            "androidx.core:core-splashscreen:$splashScreenVersion"
+    ]
+
+    baseTest = [
+            "junit:junit:4.13.2",
+    ]
+
+    mockkVersion = "1.12.1"
+    mockk = [
+            unit   : [
+                    "io.mockk:mockk:$mockkVersion"
+            ],
+            android: [
+                    "io.mockk:mockk-android:$mockkVersion"
+            ]
+    ]
+
+    truthVersion = "1.1.3"
+    truth = [
+            "com.google.truth:truth:$truthVersion"
+    ]
+
+    espressoVersion = '3.4.0'
+    androidXTestVersion = '1.4.0'
+    espresso = [
+            "androidx.test.espresso:espresso-core:$espressoVersion",
+            "androidx.test.espresso:espresso-contrib:$espressoVersion",
+            "androidx.test.espresso:espresso-intents:$espressoVersion",
+            "androidx.test:runner:$androidXTestVersion",
+            "androidx.test:rules:$androidXTestVersion",
+    ]
+    androidXTestExtVersion = "1.1.3"
+    androidXCoreTest = [
+            "androidx.test:core:$androidXTestVersion",
+            "androidx.test:runner:$androidXTestVersion",
+            "androidx.test.ext:junit:$androidXTestExtVersion"
+    ]
+}
